@@ -2,9 +2,9 @@ from django.db import models
 from django.conf import settings
 
 # Create your models here.
-class Friends(models.Model):
-    user1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
-    user2 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+')
+class Following(models.Model):
+    current_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+') # change to current user
+    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='+') # change to friend_user
     # rel_id = models.PositiveBigIntegerField()
 
 
