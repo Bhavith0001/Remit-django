@@ -9,3 +9,4 @@ class AddPostSerializer(serializers.Serializer):
 class PostSerializer(serializers.Serializer):
     title = serializers.CharField()
     body =serializers.CharField()
+    posted_at = serializers.DateTimeField()

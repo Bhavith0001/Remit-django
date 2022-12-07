@@ -13,6 +13,8 @@ from . serializers import UserRegistrationSerializer, UserSerializer, UpdateUser
 import structlog
 from utils.helper import log
 
+from django.http.response import JsonResponse
+
 logger = structlog.get_logger(__name__)
 
 
@@ -143,8 +145,7 @@ def current_user(request: HttpRequest):
         raise ValidationError({'error': f'{e}'})
 
 
-@api_view()
-@permission_classes([AllowAny])
+
 def hello_world(request):
     logger.info("HELLO")
-    return Response('OK')
+    return JsonResponse({"my_responce": "BVC"})

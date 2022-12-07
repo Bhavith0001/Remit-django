@@ -39,9 +39,17 @@ def get_my_posts(requets):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-
-@api_view()
+@api_view(http_method_names=['delete'])
 @authentication_classes([MyAuthentication])
-def feed_posts(requets):
-    raise NotImplementedError("This view is not yet implemented")
-    return Response('OK', status=status.HTTP_200_OK)
+def delete_post(request):
+    try:
+        Post.objects.get(user_id=request.user.id).delete()
+        return Response('Post deleted successfully', status=status.HTTP_200_OK)
+    except Exception as e:
+        return ResponseException(msg=e)
+
+# @api_view()
+# @authentication_classes([MyAuthentication])
+# def feed_posts(requets):
+#     raise NotImplementedError("This view is not yet implemented")
+#     return Response('OK', status=status.HTTP_200_OK)
