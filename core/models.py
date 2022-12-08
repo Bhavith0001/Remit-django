@@ -9,6 +9,7 @@ class User(AbstractUser):
     created_by = models.CharField(max_length=200)
     modified_by = models.CharField(max_length=200)
     premium = models.BooleanField(default=False)
+    following = models.ManyToManyField('self', blank=True, symmetrical=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'phone']

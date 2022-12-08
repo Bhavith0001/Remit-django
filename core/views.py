@@ -12,6 +12,7 @@ from .helper import check_premium
 from . serializers import UserRegistrationSerializer, UserSerializer, UpdateUserSerializer
 import structlog
 from utils.helper import log
+from remit.serializers.follow_serializers import CreateFollowSerializer, FollowSerializer, GetFollowSerializer
 
 from django.http.response import JsonResponse
 
@@ -148,4 +149,4 @@ def current_user(request: HttpRequest):
 
 def hello_world(request):
     logger.info("HELLO")
-    return JsonResponse({"my_responce": "BVC"})
+    return JsonResponse({"my_responce": "hello world"})
