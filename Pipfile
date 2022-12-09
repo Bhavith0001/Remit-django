@@ -10,6 +10,7 @@ psycopg2 = "==2.9.5"
 django-structlog = "==4.0.1"
 django-cors-headers = "*"
 gunicorn = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
