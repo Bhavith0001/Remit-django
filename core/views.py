@@ -11,10 +11,8 @@ from . models import User
 from .helper import check_premium
 from . serializers import UserRegistrationSerializer, UserSerializer, UpdateUserSerializer
 import structlog
-from utils.helper import log
-from remit.serializers.follow_serializers import CreateFollowSerializer, FollowSerializer, GetFollowSerializer
-
 from django.http.response import JsonResponse
+
 
 logger = structlog.get_logger(__name__)
 

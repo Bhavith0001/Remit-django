@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from core.models import User
 from core.authentication import MyAuthentication
 from core.serializers import UserSerializer
-import structlog
 from utils.helper import log
 from utils.exceptions import ResponseException
 from core.serializers import UserSerializer

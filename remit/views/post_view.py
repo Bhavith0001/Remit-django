@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes
 from core.authentication import MyAuthentication
 from utils.helper import log
-from rest_framework.exceptions import ValidationError
 from ..models import Post
 from utils.exceptions import ResponseException
 from ..serializers.post_serializer import AddPostSerializer, PostSerializer
@@ -47,9 +46,3 @@ def delete_post(request):
         return Response('Post deleted successfully', status=status.HTTP_200_OK)
     except Exception as e:
         return ResponseException(msg=e)
-
-# @api_view()
-# @authentication_classes([MyAuthentication])
-# def feed_posts(requets):
-#     raise NotImplementedError("This view is not yet implemented")
-#     return Response('OK', status=status.HTTP_200_OK)
