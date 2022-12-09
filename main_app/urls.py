@@ -21,4 +21,5 @@ urlpatterns = [
     path('auth/', include('core.urls')),
     path('remit/', include('remit.urls')),
     path('feed/', include('feed.urls')),
+    path('', include('core.urls')),
 ]

@@ -1,5 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.renderers import HTMLFormRenderer
+from django.shortcuts import render
 from rest_framework.request import HttpRequest
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
@@ -147,4 +149,4 @@ def current_user(request: HttpRequest):
 
 def hello_world(request):
     logger.info("HELLO")
-    return JsonResponse({"my_responce": "hello world"})
+    return render(request,template_name='index.html')
