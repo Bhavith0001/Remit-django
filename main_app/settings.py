@@ -93,12 +93,11 @@ WSGI_APPLICATION = 'main_app.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
+       'ENGINE': 'django.db.backends.mysql',
        'NAME': 'remit_db',
-       'USER': 'postgres',
+       'USER': 'root',
        'PASSWORD': '1234',
        'HOST': 'localhost',
-       'PORT': '5432',
    }
 }
 
