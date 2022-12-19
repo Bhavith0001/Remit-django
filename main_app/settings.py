@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure--j819w1c1t@(5k*#q*1d9k@$f@x5j14+bny08*scb^z2^73gs3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blacktech910.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -61,7 +62,7 @@ MIDDLEWARE = [
 
 # CORS_ALLOWED_ORIGIN_REGEXES =[]
 
-# CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = False
 
 # CORS_ORIGIN_WHITELIST = (
 #   'http://localhost:3000',
@@ -94,10 +95,10 @@ WSGI_APPLICATION = 'main_app.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.mysql',
-       'NAME': 'blacktech910$remit_db',
-       'USER': 'blacktech910',
-       'PASSWORD': '@abcd1234',
-       'HOST': 'blacktech910.mysql.pythonanywhere-services.com',
+       'NAME': 'remit_db',
+       'USER': 'root',
+       'PASSWORD': '1234',
+       'HOST': 'localhost',
    }
 }
 
@@ -138,6 +139,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
