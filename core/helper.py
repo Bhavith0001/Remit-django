@@ -9,9 +9,9 @@ def check_premium(paid, is_premium):
         return True
     
     if paid is True and is_premium is False:
-        raise ValidationError({'error': 'premium must be True is paid is True'})
+        raise Exception('premium must be True is paid is True')
     
     if paid is False and is_premium is True:
-        raise ValidationError({'error': 'paid must be True is premium is True'})
+        raise Exception('paid must be True is premium is True')
 
     return False

@@ -40,9 +40,9 @@ def get_my_posts(requets):
 
 @api_view(http_method_names=['delete'])
 @authentication_classes([MyAuthentication])
-def delete_post(request):
+def delete_post(request, post_id):
     try:
-        Post.objects.get(user_id=request.user.id).delete()
+        Post.objects.get(id=post_id).delete()
         return Response('Post deleted successfully', status=status.HTTP_200_OK)
     except Exception as e:
         return ResponseException(msg=e)

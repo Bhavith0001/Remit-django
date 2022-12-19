@@ -1,6 +1,5 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.renderers import HTMLFormRenderer
 from django.shortcuts import render
 from rest_framework.request import HttpRequest
 from rest_framework import status
@@ -13,7 +12,7 @@ from . models import User
 from .helper import check_premium
 from . serializers import UserRegistrationSerializer, UserSerializer, UpdateUserSerializer
 import structlog
-from django.http.response import JsonResponse
+from utils.exceptions import ResponseException
 
 
 logger = structlog.get_logger(__name__)
@@ -42,8 +41,6 @@ def register_user(request):
                 user.phone = validated_data['phone']
                 user.first_name = validated_data['first_name']
                 user.last_name = validated_data['last_name']
-                user.created_by = validated_data['username']
-                user.modified_by = validated_data['username']
                 user.set_password(validated_data['password'])
                 user.premium = check_premium(paid=validated_data['paid'], is_premium=validated_data['premium'])
                 user.save()
@@ -53,7 +50,7 @@ def register_user(request):
                 return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
     except Exception as e:
         logger.info(event=f'Register failed --> {e}', method='register_user', status='failed')
-        raise ValidationError({'error': f'{e}'})
+        return ResponseException(msg=e)
 
 
 @api_view(http_method_names=['post'])
@@ -86,7 +83,7 @@ def login_user(request):
             return Response(user_credentials, status=status.HTTP_202_ACCEPTED)
     except Exception as e:
         logger.info(event=f'Login failed ==> {e}', method='login_user', status='failed')
-        raise ValidationError({'error': f'{e}'})
+        return ResponseException(msg=e)
 
 
 @api_view()
@@ -127,7 +124,6 @@ def current_user(request: HttpRequest):
                 user.phone = validated_data['phone']
                 user.first_name = validated_data['first_name']
                 user.last_name = validated_data['last_name']
-                user.modified_by = validated_data['modified_by']
                 user.premium = check_premium(paid=validated_data['paid'], is_premium=validated_data['premium'])
                 user.save()
 
@@ -143,7 +139,7 @@ def current_user(request: HttpRequest):
 
     except Exception as e:
         logger.info(event=f'Failed ==> {e}', method='current_user', status='failed')
-        raise ValidationError({'error': f'{e}'})
+        return ResponseException(msg=e)
 
 
 

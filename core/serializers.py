@@ -7,8 +7,6 @@ class UserSerializer(serializers.Serializer):
     phone = serializers.IntegerField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
-    created_by = serializers.CharField()
-    modified_by = serializers.CharField()
     premium = serializers.BooleanField()
 
 
@@ -28,5 +26,4 @@ class LoginUserSerializer(serializers.Serializer):
 
 class UpdateUserSerializer(UserRegistrationSerializer):
     password = serializers.CharField(read_only=True)
-    modified_by = serializers.CharField()
 

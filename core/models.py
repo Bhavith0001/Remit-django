@@ -6,8 +6,6 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     phone = models.PositiveBigIntegerField()
     modified = models.DateTimeField(auto_now=True)
-    created_by = models.CharField(max_length=200)
-    modified_by = models.CharField(max_length=200)
     premium = models.BooleanField(default=False)
     following = models.ManyToManyField('self', blank=True, symmetrical=False)
 

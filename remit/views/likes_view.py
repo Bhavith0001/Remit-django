@@ -16,7 +16,7 @@ def like_post(request, post_id):
 
         if request.method == 'POST':
             """ likes the post """
-            post.likes.add(User.objects.get(pk=user_id).id)
+            post.likes.add(user_id)
             return Response({'response': 'liked'}, status=status.HTTP_200_OK)
         
         if request.method == 'DELETE':
